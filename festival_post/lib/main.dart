@@ -1,6 +1,7 @@
 import 'package:festival_post/utils/routes_utils.dart';
 import 'package:festival_post/views/screens/DetailsPage.dart';
 import 'package:festival_post/views/screens/HomePage.dart';
+import 'package:festival_post/views/screens/SplashScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -28,9 +29,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
       ),
+      initialRoute: MyRoutes.SplashScreen,
       routes: {
         MyRoutes.HomePage: (context) => const HomePage(),
         MyRoutes.DetailsPage: (context) => const DetailsPage(),
+        MyRoutes.SplashScreen: (context) => const SplashScreen(),
       },
     );
   }

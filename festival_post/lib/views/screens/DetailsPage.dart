@@ -161,7 +161,7 @@ class _DetailsPageState extends State<DetailsPage> {
                           SnackBar(
                             content: const Text("Wishes Copied..."),
                             behavior: SnackBarBehavior.floating,
-                            backgroundColor: Colors.green.shade300,
+                            backgroundColor: Colors.green.shade600,
                           ),
                         );
                       },
@@ -178,7 +178,7 @@ class _DetailsPageState extends State<DetailsPage> {
                   onPressed: () async {
                     final boundary = key.currentContext?.findRenderObject()
                         as RenderRepaintBoundary?;
-                    final image = await boundary?.toImage(pixelRatio: 12);
+                    final image = await boundary?.toImage(pixelRatio: 6);
                     final byteData =
                         await image?.toByteData(format: ImageByteFormat.png);
                     final imageBytes = byteData?.buffer.asUint8List();
@@ -192,6 +192,16 @@ class _DetailsPageState extends State<DetailsPage> {
                       await imagePath.writeAsBytes(imageBytes);
 
                       ImageGallerySaver.saveFile(imagePath.path);
+
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: const Text(
+                            "Festival Post Save Your Device Successfully..",
+                          ),
+                          behavior: SnackBarBehavior.floating,
+                          backgroundColor: Colors.green.shade600,
+                        ),
+                      );
                     }
                   },
                   icon: const Icon(Icons.download),
@@ -205,7 +215,7 @@ class _DetailsPageState extends State<DetailsPage> {
                   onPressed: () async {
                     final boundary = key.currentContext?.findRenderObject()
                         as RenderRepaintBoundary?;
-                    final image = await boundary?.toImage(pixelRatio: 12);
+                    final image = await boundary?.toImage(pixelRatio: 2);
                     final byteData =
                         await image?.toByteData(format: ImageByteFormat.png);
                     final imageBytes = byteData?.buffer.asUint8List();
