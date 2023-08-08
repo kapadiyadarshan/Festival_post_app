@@ -1,4 +1,5 @@
 import 'package:festival_post/utils/festival_utils.dart';
+import 'package:festival_post/utils/routes_utils.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -26,35 +27,43 @@ class _HomePageState extends State<HomePage> {
               crossAxisCount: 2,
               childAspectRatio: 3 / 2.5,
             ),
-            itemCount: allFestival.length,
+            itemCount: festivalData.length,
             itemBuilder: (context, index) {
-              return Card(
-                color:
-                    Colors.primaries[index % Colors.primaries.length].shade400,
-                child: Padding(
-                  padding: const EdgeInsets.all(12),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "${festivalData[index].name}",
-                        style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Image.asset(
-                            "${festivalData[index].image}",
-                            scale: 1,
-                          )
-                        ],
-                      )
-                    ],
+              return GestureDetector(
+                onTap: () {
+                  Navigator.of(context).pushNamed(
+                    MyRoutes.DetailsPage,
+                    arguments: festivalData[index],
+                  );
+                },
+                child: Card(
+                  color: Colors
+                      .primaries[index % Colors.primaries.length].shade400,
+                  child: Padding(
+                    padding: const EdgeInsets.all(12),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "${festivalData[index].name}",
+                          style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Image.asset(
+                              "${festivalData[index].image}",
+                              scale: 1,
+                            )
+                          ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
               );
